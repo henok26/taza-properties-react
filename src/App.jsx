@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Properties from './components/Properties';
+import About from './components/About';
+import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import OpeningDoors from './components/OpeningDoors'; // Keep this for the intro
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true);
+
+  // This prevents animations from firing on initial load before the user sees them
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); 
+    return () => clearTimeout(timer);
+  }, []);
+  
+  const [isAnimationDone, setIsAnimationDone] = useState(false);
+
+  if (isLoading) {
+    return null; 
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-gray-50">
+      {!isAnimationDone && <OpeningDoors onAnimationComplete={() => setIsAnimationDone(true)} />}
+      <div style={{ opacity: isAnimationDone ? 1 : 0, transition: 'opacity 0.5s' }}>
+        <Navbar />
+        <main>
+          <Hero />
+          <Properties />
+          <About />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
