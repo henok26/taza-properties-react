@@ -1,22 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
+import logo from '../assets/taza-logo.png';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuVariants = {
+    hidden: { x: '100%' },
+    visible: { x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+    exit: { x: '100%', transition: { duration: 0.3, ease: 'easeInOut' } }
+  };
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="fixed top-0 left-0 w-full bg-black bg-opacity-50 backdrop-blur-md z-50">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold text-gray-800">
-          Taza Properties
-        </a>
-        <div className="hidden md:flex items-center space-x-8">
-          <a href="#properties" className="text-gray-600 hover:text-brand-purple">Properties</a>
-          <a href="#about" className="text-gray-600 hover:text-brand-purple">About Us</a>
-          <a href="#testimonials" className="text-gray-600 hover:text-brand-purple">Testimonials</a>
-          <a href="#contact" className="text-gray-600 hover:text-brand-purple">Contact</a>
+        <div className="flex items-center">
+          <img src={logo} alt="Taza Properties" className="h-10 w-auto" />
         </div>
-        <a href="#contact" className="hidden md:block bg-gradient-to-r from-teal-500 to-[#ab1a96]  text-white px-6 py-2 rounded-full hover:shadow-lg transition-shadow duration-300">
+        
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-8">
+          <a href="#properties" className="text-white hover:text-[#42C2B3]">Properties</a>
+          <a href="#map-section" className="text-white hover:text-[#42C2B3]">Map</a>
+          <a href="#about" className="text-white hover:text-[#42C2B3]">About Us</a>
+          <a href="#testimonials" className="text-white hover:text-[#42C2B3]">Testimonials</a>
+          <a href="#contact" className="text-white hover:text-[#42C2B3]">Contact</a>
+        </div>
+        <a href="#contact" className="hidden md:block bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white px-6 py-2 rounded-full hover:shadow-lg transition-shadow duration-300">
           Get in Touch
         </a>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-white z-50 relative">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Menu Panel */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="fixed top-0 right-0 h-full w-full max-w-xs bg-gray-900 shadow-lg p-6 z-40"
+          >
+            <nav className="flex flex-col space-y-6 mt-16 text-xl text-white">
+              <a href="#properties" onClick={() => setIsOpen(false)}>Properties</a>
+              <a href="#map-section" onClick={() => setIsOpen(false)}>Map</a>
+              <a href="#about" onClick={() => setIsOpen(false)}>About Us</a>
+              <a href="#testimonials" onClick={() => setIsOpen(false)}>Testimonials</a>
+              <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
