@@ -5,6 +5,7 @@ import Properties from './components/Properties';
 import Map from './components/Map';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
+import Partners from './components/Partners'; // Import the new component
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import OpeningDoors from './components/OpeningDoors';
@@ -30,6 +31,7 @@ function App() {
           <Properties />
           <About />
           <Testimonials />
+          <Partners /> {/* Add the new section here */}
           <Map />
           <Contact />
         </main>
