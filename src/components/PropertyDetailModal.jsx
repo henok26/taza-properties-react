@@ -4,6 +4,17 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const PropertyDetailModal = ({ property, onClose }) => {
+
+  const handleContactClick = () => {
+    onClose();
+    setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 300); // Delay to allow modal to close
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,7 +28,7 @@ const PropertyDetailModal = ({ property, onClose }) => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 50, opacity: 0 }}
         className="bg-gray-900 text-white w-full max-w-4xl h-[90vh] rounded-2xl overflow-y-auto"
-        onClick={e => e.stopPropagation()} // Prevent closing when clicking inside modal
+        onClick={e => e.stopPropagation()}
       >
         <div className="relative">
           <img src={property.image} alt={property.title} className="w-full h-96 object-cover"/>
@@ -41,7 +52,10 @@ const PropertyDetailModal = ({ property, onClose }) => {
             </MapContainer>
           </div>
 
-          <button className="w-full bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white text-lg font-bold py-4 rounded-lg hover:shadow-xl transition-shadow duration-300">
+          <button 
+            onClick={handleContactClick}
+            className="w-full bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white text-lg font-bold py-4 rounded-lg hover:shadow-xl transition-shadow duration-300"
+          >
             Contact Agent About This Property
           </button>
         </div>
