@@ -23,7 +23,7 @@ const Hero = () => {
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Find Your Perfect Property in Addis Ababa</h1>
         <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">The perfect place to find your new beginning. Let us guide you home.</p>
-        <div className="flex justify-center space-x-4">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <a href="#properties" className="bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg transition-shadow duration-300 transform hover:scale-105">View Listings</a>
           <a href="#contact" className="bg-white text-[#42C2B3] px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-200 transition duration-300 transform hover:scale-105">Contact an Agent</a>
         </div>
@@ -33,3 +33,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
