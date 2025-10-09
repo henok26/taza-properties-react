@@ -24,16 +24,27 @@ const Properties = () => {
 
   return (
     <>
-      <section id="properties" ref={ref} className="relative h-[600vh] bg-black py-20">
-        <div className="container mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold text-white mb-12">Property list</h2>
+      <section id="properties" className="bg-black py-20">
+        {/* Desktop-only horizontal scroll section */}
+        <div ref={ref} className="hidden md:block relative h-[600vh]">
+          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pt-28">
+            <h2 className="text-5xl font-bold text-center text-white mb-12">Property list</h2>
+            <motion.div style={{ x }} className="flex items-center space-x-8 px-8">
+              {propertiesData.map(prop => (
+                <PropertyCard key={prop.id} property={prop} onCardClick={setSelectedProperty} />
+              ))}
+            </motion.div>
+          </div>
         </div>
-        <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
-          <motion.div style={{ x }} className="flex items-center space-x-8 px-8">
+
+        {/* Mobile-only vertical list section */}
+        <div className="md:hidden container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center text-white mb-12">Property list</h2>
+          <div className="space-y-8">
             {propertiesData.map(prop => (
-              <PropertyCard key={prop.id} property={prop} onCardClick={setSelectedProperty} />
+              <PropertyCard key={prop.id} property={prop} onCardClick={setSelectedProperty} isMobile={true} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -50,4 +61,3 @@ const Properties = () => {
 };
 
 export default Properties;
-
