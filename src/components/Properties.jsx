@@ -25,7 +25,6 @@ const Properties = () => {
   return (
     <>
       <section id="properties" className="bg-black py-20">
-        {/* Desktop-only horizontal scroll section */}
         <div ref={ref} className="hidden md:block relative h-[600vh]">
           <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pt-28">
             <h2 className="text-5xl font-bold text-center text-white mb-12">Property list</h2>
@@ -37,7 +36,6 @@ const Properties = () => {
           </div>
         </div>
 
-        {/* Mobile-only vertical list section */}
         <div className="md:hidden container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-white mb-12">Property list</h2>
           <div className="space-y-8">

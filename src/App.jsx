@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Properties from './components/Properties';
-import Map from './components/Map';
+import WhyChooseUs from './components/WhyChooseUs';
+import VideoShowcase from './components/VideoShowcase';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
-import Partners from './components/Partners'; // Import the new component
+import Partners from './components/Partners';
+import FAQ from './components/FAQ';
+import Map from './components/Map';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import OpeningDoors from './components/OpeningDoors';
@@ -29,9 +32,12 @@ function App() {
         <main>
           <Hero />
           <Properties />
+          <WhyChooseUs />
+          <VideoShowcase />
           <About />
           <Testimonials />
-          <Partners /> {/* Add the new section here */}
+          <Partners />
+          <FAQ />
           <Map />
           <Contact />
         </main>
@@ -42,4 +48,3 @@ function App() {
 }
 
 export default App;
-

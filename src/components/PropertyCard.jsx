@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import InteractiveButton from './InteractiveButton';
 
 const PropertyCard = ({ property, onCardClick, isMobile = false }) => {
   const cardMotion = isMobile ? {
@@ -7,29 +8,40 @@ const PropertyCard = ({ property, onCardClick, isMobile = false }) => {
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.2 }
   } : {
-    whileHover: { scale: 1.05, y: -10 },
+    whileHover: "hover",
     transition: { type: "spring", stiffness: 300 }
+  };
+
+  const glowVariants = {
+    hover: {
+      boxShadow: "0px 0px 30px rgba(66, 194, 179, 0.4)",
+      y: -10
+    }
   };
 
   return (
     <motion.div 
-      className={`flex-shrink-0 w-full md:w-[50vw] lg:w-[50rem] h-[550px] md:h-[750px] bg-gray-800 rounded-2xl overflow-hidden shadow-lg ${isMobile ? 'mb-8' : ''}`}
+      className={`relative flex-shrink-0 w-full md:w-[45vw] lg:w-[48rem] h-[550px] bg-gray-800 rounded-2xl overflow-hidden shadow-lg group`}
+      variants={glowVariants}
       {...cardMotion}
     >
-      <img className="w-full h-3/5 object-cover" src={property.image} alt={property.title} />
-      <div className="p-6 flex flex-col justify-between h-2/5">
-        <div>
-          <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">{property.title}</h3>
-          <p className="text-gray-400 mb-4">{property.details}</p>
-        </div>
+      <img className="w-full h-full object-cover" src={property.image} alt={property.title} />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"/>
+      <div className="absolute bottom-0 left-0 p-6 text-white w-full">
+        <h3 className="text-3xl font-bold mb-2">{property.title}</h3>
+        <p className="text-gray-300 mb-4">{property.details}</p>
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl font-bold text-[#42C2B3]">{property.price}</span>
-          <button 
-            onClick={() => onCardClick(property)}
-            className="w-1/2 bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white py-2 rounded-full hover:shadow-lg transition-shadow duration-300"
+          <span className="text-3xl font-bold text-[#42C2B3]">{property.price}</span>
+          <motion.div
+            className="w-1/2 transition-transform duration-300 transform translate-y-20 group-hover:translate-y-0"
           >
-            View Details
-          </button>
+            <InteractiveButton
+              onClick={() => onCardClick(property)}
+              className="w-full bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white py-3 rounded-full font-semibold"
+            >
+              View Details
+            </InteractiveButton>
+          </motion.div>
         </div>
       </div>
     </motion.div>
@@ -37,4 +49,3 @@ const PropertyCard = ({ property, onCardClick, isMobile = false }) => {
 };
 
 export default PropertyCard;
-

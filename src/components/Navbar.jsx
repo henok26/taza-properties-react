@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/taza-logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
+import InteractiveButton from './InteractiveButton';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,8 +18,12 @@ const Navbar = () => {
     exit: { opacity: 0 }
   };
 
+  const headerClasses = isOpen 
+    ? "bg-gray-900" 
+    : "bg-black bg-opacity-50 backdrop-blur-md";
+
   return (
-    <header className="fixed top-0 left-0 w-full bg-black bg-opacity-50 backdrop-blur-md z-50">
+    <header className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${headerClasses}`}>
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <img src={logo} alt="Taza Properties" className="h-10 w-auto" />
@@ -32,9 +37,12 @@ const Navbar = () => {
           <a href="#testimonials" className="text-white hover:text-[#42C2B3]">Testimonials</a>
           <a href="#contact" className="text-white hover:text-[#42C2B3]">Contact</a>
         </div>
-        <a href="#contact" className="hidden md:block bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white px-6 py-2 rounded-full hover:shadow-lg transition-shadow duration-300">
+        <InteractiveButton 
+          href="#contact" 
+          className="hidden md:block bg-gradient-to-r from-[#42C2B3] to-[#A450A0] text-white px-6 py-2 rounded-full hover:shadow-lg transition-shadow duration-300"
+        >
           Get in Touch
-        </a>
+        </InteractiveButton>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
