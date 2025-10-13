@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import StaggeredMenu from './components/StaggeredMenu'; // The only navbar now
 import Hero from './components/Hero';
 import Properties from './components/Properties';
 import WhyChooseUs from './components/WhyChooseUs';
@@ -12,6 +12,19 @@ import Map from './components/Map';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import OpeningDoors from './components/OpeningDoors';
+
+const menuItems = [
+  { label: 'Properties', link: '#properties' },
+  { label: 'About', link: '#about' },
+  { label: 'Testimonials', link: '#testimonials' },
+  { label: 'Contact', link: '#contact' }
+];
+
+const socialItems = [
+  { label: 'Facebook', link: '#' },
+  { label: 'Twitter', link: '#' },
+  { label: 'Instagram', link: '#' }
+];
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,9 +39,10 @@ function App() {
 
   return (
     <div className="bg-black">
+      <StaggeredMenu items={menuItems} socialItems={socialItems} />
+
       {!isAnimationDone && <OpeningDoors onAnimationComplete={() => setIsAnimationDone(true)} />}
       <div style={{ opacity: isAnimationDone ? 1 : 0, transition: 'opacity 0.5s' }}>
-        <Navbar />
         <main>
           <Hero />
           <Properties />

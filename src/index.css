@@ -2,3 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+..sm-scope .sm-socials-list:hover .sm-socials-link:not(:hover) { opacity: 0.35; }
+.sm-scope .sm-socials-link:hover { color: var(--sm-accent, #ff0000) !important; }
+.sm-scope .sm-panel-item:hover { color: var(--sm-accent, #ff0000) !important; }
+.sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
+.sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { 
+  counter-increment: smItem; 
+  content: counter(smItem, decimal-leading-zero); 
+  position: absolute; 
+  top: 0.1em; 
+  right: 0; 
+  font-size: 1rem; 
+  font-weight: 400; 
+  color: var(--sm-accent, #ff0000); 
+  letter-spacing: 0; 
+  pointer-events: none; 
+  user-select: none; 
+  opacity: var(--sm-num-opacity, 0); 
+}
+@media (max-width: 1024px) { 
+  .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } 
+}

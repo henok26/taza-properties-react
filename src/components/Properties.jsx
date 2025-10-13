@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropertyCard from './PropertyCard';
 import PropertyDetailModal from './PropertyDetailModal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useHorizontalScroll } from '../hooks/useHorizontalScroll';
 
 import luxuryApartment from '../assets/Luxury Apartment in Bole.png';
 import spaciousVilla from '../assets/Spacious Villa in Old Airport.png';
@@ -19,28 +18,21 @@ const propertiesData = [
 ];
 
 const Properties = () => {
-  const { ref, x } = useHorizontalScroll();
   const [selectedProperty, setSelectedProperty] = useState(null);
 
   return (
     <>
       <section id="properties" className="bg-black py-20">
-        <div ref={ref} className="hidden md:block relative h-[600vh]">
-          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pt-28">
-            <h2 className="text-5xl font-bold text-center text-white mb-12">Property list</h2>
-            <motion.div style={{ x }} className="flex items-center space-x-8 px-8">
-              {propertiesData.map(prop => (
-                <PropertyCard key={prop.id} property={prop} onCardClick={setSelectedProperty} />
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
-        <div className="md:hidden container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-white mb-12">Property list</h2>
-          <div className="space-y-8">
-            {propertiesData.map(prop => (
-              <PropertyCard key={prop.id} property={prop} onCardClick={setSelectedProperty} isMobile={true} />
+        <div className="container mx-auto px-6">
+          <h2 className="text-5xl font-bold text-center text-white mb-12">Property list</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {propertiesData.map((prop, index) => (
+              <PropertyCard 
+                key={prop.id} 
+                property={prop} 
+                onCardClick={setSelectedProperty}
+                index={index} // Pass index for staggered animation
+              />
             ))}
           </div>
         </div>
@@ -59,3 +51,4 @@ const Properties = () => {
 };
 
 export default Properties;
+

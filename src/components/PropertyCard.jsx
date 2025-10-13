@@ -2,28 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import InteractiveButton from './InteractiveButton';
 
-const PropertyCard = ({ property, onCardClick, isMobile = false }) => {
-  const cardMotion = isMobile ? {
-    initial: { opacity: 0, y: 50 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 }
-  } : {
-    whileHover: "hover",
-    transition: { type: "spring", stiffness: 300 }
-  };
-
-  const glowVariants = {
-    hover: {
-      boxShadow: "0px 0px 30px rgba(66, 194, 179, 0.4)",
-      y: -10
-    }
-  };
-
+const PropertyCard = ({ property, onCardClick, index }) => {
   return (
     <motion.div 
-      className={`relative flex-shrink-0 w-full md:w-[45vw] lg:w-[48rem] h-[550px] bg-gray-800 rounded-2xl overflow-hidden shadow-lg group`}
-      variants={glowVariants}
-      {...cardMotion}
+      className="relative h-[550px] bg-gray-800 rounded-2xl overflow-hidden shadow-lg group"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      whileHover={{ y: -10, boxShadow: "0px 0px 30px rgba(66, 194, 179, 0.4)" }}
     >
       <img className="w-full h-full object-cover" src={property.image} alt={property.title} />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"/>
@@ -49,3 +36,4 @@ const PropertyCard = ({ property, onCardClick, isMobile = false }) => {
 };
 
 export default PropertyCard;
+
