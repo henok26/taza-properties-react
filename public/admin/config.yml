@@ -1,9 +1,5 @@
 backend:
-  name: auth0
-  domain: AUTH0_DOMAIN # Netlify will replace this with your environment variable
-  client_id: AUTH0_CLIENT_ID # Netlify will also replace this
-  use_local_storage: true # Recommended for Auth0
-  auth_scope: openid profile email # This is the required missing line
+  name: git-gateway # We are using git-gateway with an external provider
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
