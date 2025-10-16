@@ -1,17 +1,20 @@
 backend:
   name: git-gateway
-  branch: main  # or 'master' depending on your repo
+  branch: main # or 'master' — use your actual default branch name
 
-media_folder: "static/images/uploads"  # where uploaded images are stored in your repo
-public_folder: "/images/uploads"        # public URL path for images
+site_url: https://tazaproperties.com
+
+media_folder: "static/uploads" # where uploaded images will be stored in your repo
+public_folder: "/uploads"      # how those images appear on your site
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "content/posts"
+  - name: "properties"          # name used internally by CMS
+    label: "Properties"         # name shown in the CMS UI
+    folder: "content/properties" # folder in your repo to store entries
     create: true
-    slug: "{{slug}}"
+    slug: "{{slug}}"             # file name pattern
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
