@@ -1,7 +1,6 @@
 backend:
-  name: auth0
-  domain: AUTH0_DOMAIN
-  client_id: AUTH0_CLIENT_ID
+  name: git-gateway
+  branch: main
   use_local_storage: true
 
 media_folder: "public/uploads"
