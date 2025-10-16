@@ -1,7 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main
-  use_local_storage: true
+  name: auth0
+  domain: AUTH0_DOMAIN # Netlify will replace this with your environment variable
+  client_id: AUTH0_CLIENT_ID # Netlify will also replace this
+  use_local_storage: true # Recommended for Auth0
+  auth_scope: openid profile email # This is the required missing line
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
@@ -13,9 +15,10 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Details", name: "details", widget: "string" }
-      - { label: "Price", name: "price", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Latitude", name: "lat", widget: "number", hint: "Decimal value" }
-      - { label: "Longitude", name: "lon", widget: "number", hint: "Decimal value" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Details", name: "details", widget: "string"}
+      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Latitude", name: "lat", widget: "number", value_type: "float"}
+      - {label: "Longitude", name: "lon", widget: "number", value_type: "float"}
+
