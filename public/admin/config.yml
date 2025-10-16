@@ -1,20 +1,23 @@
 backend:
-  name: git-gateway
-  branch: main # or 'master' — use your actual default branch name
+  name: auth0
+  domain: VITE_APP_AUTH0_DOMAIN # These will be replaced by Netlify's build process
+  client_id: VITE_APP_AUTH0_CLIENT_ID
+  auth_scope: openid profile email
 
-site_url: https://tazaproperties.com
-
-media_folder: "static/uploads" # where uploaded images will be stored in your repo
-public_folder: "/uploads"      # how those images appear on your site
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
-  - name: "properties"          # name used internally by CMS
-    label: "Properties"         # name shown in the CMS UI
-    folder: "content/properties" # folder in your repo to store entries
+  - name: "properties"
+    label: "Properties"
+    folder: "src/data/properties"
     create: true
-    slug: "{{slug}}"             # file name pattern
+    slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Details", name: "details", widget: "string"}
+      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Latitude", name: "lat", widget: "number", value_type: "float"}
+      - {label: "Longitude", name: "lon", widget: "number", value_type: "float"}
+
