@@ -1,22 +1,17 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main  # or 'master' depending on your repo
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+media_folder: "static/images/uploads"  # where uploaded images are stored in your repo
+public_folder: "/images/uploads"        # public URL path for images
 
 collections:
-  - name: "properties"
-    label: "Properties"
-    folder: "src/data/properties"
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Details (e.g., 3 Beds | 2 Baths)", name: "details", widget: "string"}
-      - {label: "Price", name: "price", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Latitude", name: "lat", widget: "number", value_type: "float"}
-      - {label: "Longitude", name: "lon", widget: "number", value_type: "float"}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
