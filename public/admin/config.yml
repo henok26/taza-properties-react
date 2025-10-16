@@ -1,5 +1,7 @@
 backend:
-  name: git-gateway # We are using git-gateway with an external provider
+  name: github
+  repo: henok26/taza-properties-react # IMPORTANT: Replace with YOUR GitHub username/repository
+  branch: main
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
